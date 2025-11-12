@@ -7,33 +7,33 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Lightbulb, Refrigerator, Tv, Wind, Zap, Lamp } from "lucide-react";
+import { Lightbulb, Sun, PaintBucket, Plug, AlertTriangle, Home } from "lucide-react";
 
 const tips = [
   {
-    icon: <Refrigerator className="w-5 h-5 text-primary" />,
-    title: "Otimize o uso da geladeira",
-    content: "Não forre as prateleiras, evite abrir a porta sem necessidade e não guarde alimentos quentes. Verifique se a borracha de vedação está em bom estado.",
+    icon: <Sun className="w-5 h-5 text-primary" />,
+    title: "Aproveite a iluminação natural",
+    content: "Abra cortinas e persianas durante o dia. Usar a luz do sol para iluminar os ambientes é a forma mais eficiente e gratuita de economizar energia.",
   },
   {
-    icon: <Wind className="w-5 h-5 text-primary" />,
-    title: "Ar-condicionado com consciência",
-    content: "Mantenha os filtros limpos, regule a temperatura para cerca de 23°C e mantenha portas e janelas fechadas para evitar a entrada de ar quente.",
+    icon: <PaintBucket className="w-5 h-5 text-primary" />,
+    title: "Pinte as paredes com cores claras",
+    content: "Ambientes com paredes e tetos de cores claras refletem melhor a luz, diminuindo a necessidade de usar lâmpadas durante o dia.",
+  },
+    {
+    icon: <Home className="w-5 h-5 text-primary" />,
+    title: "Use a iluminação de forma direcionada",
+    content: "Em vez de acender a luz principal do cômodo, use abajures ou luminárias para atividades como leitura. Isso consome menos energia.",
   },
   {
-    icon: <Tv className="w-5 h-5 text-primary" />,
-    title: "Evite o modo stand-by",
-    content: "Aparelhos em modo de espera continuam consumindo energia. Desligue-os da tomada quando não estiverem em uso por um longo período.",
+    icon: <Plug className="w-5 h-5 text-primary" />,
+    title: "Desconecte aparelhos que não estão em uso",
+    content: "Aparelhos em modo 'stand-by' ou carregadores na tomada sem o celular continuam consumindo energia. Desplugá-los pode gerar uma economia de até 12%.",
   },
   {
-    icon: <Lamp className="w-5 h-5 text-primary" />,
-    title: "Iluminação eficiente",
-    content: "Troque lâmpadas incandescentes por LED, que são mais econômicas e duráveis. Aproveite a luz natural sempre que possível.",
-  },
-  {
-    icon: <Zap className="w-5 h-5 text-primary" />,
-    title: "Cuidado com o 'ladrão' de energia",
-    content: "Carregadores de celular e outros aparelhos conectados à tomada sem uso continuam consumindo energia. Retire-os da tomada após o uso.",
+    icon: <AlertTriangle className="w-5 h-5 text-primary" />,
+    title: "Verifique a fiação da sua casa",
+    content: "Fios elétricos antigos, finos ou com emendas malfeitas podem causar fuga de corrente, o que desperdiça energia e aumenta o risco de acidentes. Consulte um eletricista.",
   },
 ];
 
