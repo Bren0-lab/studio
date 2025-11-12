@@ -52,6 +52,10 @@ export default function SettingsTab() {
       description: "Suas novas configurações de tarifa foram aplicadas.",
     });
   }
+  
+  const getTariffDisplayName = (key: string) => {
+    return key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  }
 
   return (
     <Card className="max-w-2xl mx-auto">
@@ -95,14 +99,14 @@ export default function SettingsTab() {
                             <SelectItem key={key} value={key}>
                                 <div className="flex items-center gap-2">
                                     <span className="w-3 h-3 rounded-full" style={{backgroundColor: tariff.color}}/>
-                                    <span>{key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')} (x{tariff.mult.toFixed(1)})</span>
+                                    <span>{getTariffDisplayName(key)} (+R$ {tariff.additionalCostPer100kWh.toFixed(2).replace('.',',')}/100kWh)</span>
                                 </div>
                             </SelectItem>
                         ))}
                         </SelectContent>
                     </Select>
                     <FormDescription>
-                        A bandeira ativa multiplica a tarifa base para calcular o custo final.
+                        A bandeira ativa adiciona um custo à sua conta de energia.
                     </FormDescription>
                     <FormMessage />
                     </FormItem>

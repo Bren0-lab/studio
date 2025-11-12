@@ -25,10 +25,11 @@ export const initialDevices: Device[] = [
 
 export const initialConfig: Config = {
   baseRate: 0.75, // R$/kWh
-  activeTariffKey: 'normal',
+  activeTariffKey: 'verde',
   tariffs: {
-    normal: { mult: 1.0, color: '#4CAF50' },
-    pico: { mult: 2.0, color: '#F44336' },
-    fora_de_ponta: { mult: 0.8, color: '#2196F3' }
+    verde: { mult: 1.0, color: '#4CAF50', additionalCostPer100kWh: 0 },
+    amarela: { mult: 1.0, color: '#FFEB3B', additionalCostPer100kWh: 2.89 },
+    vermelha_1: { mult: 1.0, color: '#F44336', additionalCostPer100kWh: 6.50 },
+    vermelha_2: { mult: 1.0, color: '#B71C1C', additionalCostPer100kWh: 9.49 }
   },
 };

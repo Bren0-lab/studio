@@ -16,8 +16,10 @@ export default function SummaryCards({ devices, config }: SummaryCardsProps) {
     const totalPowerWh = activeDevices.reduce((acc, device) => acc + (device.power * device.hours), 0);
     const totalKwh = totalPowerWh / 1000;
     
-    const activeTariff = config.tariffs[config.activeTariffKey] || { mult: 1 };
-    const totalCost = totalKwh * config.baseRate * activeTariff.mult;
+    const activeTariff = config.tariffs[config.activeTariffKey] || { mult: 1, additionalCostPer100kWh: 0 };
+    const baseCost = totalKwh * config.baseRate * activeTariff.mult;
+    const additionalCost = (totalKwh / 100) * activeTariff.additionalCostPer100kWh;
+    const totalCost = baseCost + additionalCost;
 
     return {
       totalKwh,
