@@ -36,20 +36,21 @@ export default function FloorPlan({ devices, rooms, isMapping, onMapClick }: Flo
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-5xl mx-auto overflow-hidden border-2 rounded-lg aspect-[16/10] bg-card/50 border-border"
+      className="relative w-full max-w-5xl mx-auto overflow-hidden border-2 rounded-lg aspect-[10/11] bg-card/50 border-border"
       onClick={handleClick}
       style={{ cursor: isMapping ? 'crosshair' : 'default' }}
     >
       {/* Room Layout based on user request */}
-      <RoomArea id="lavanderia" name="Lavanderia" style={{ top: '0%', left: '0%', width: '60%', height: '15%' }} />
-      <RoomArea id="quarto2" name="Quarto 2" style={{ top: '15%', left: '0%', width: '20%', height: '25%' }} />
-      <RoomArea id="banheiro1" name="Banheiro 1" style={{ top: '15%', left: '20%', width: '10%', height: '25%' }} />
-      <RoomArea id="quarto1" name="Quarto 1" style={{ top: '15%', left: '30%', width: '20%', height: '25%' }} />
-      <RoomArea id="cozinha-sala" name="Cozinha/Sala" style={{ top: '0%', left: '60%', width: '40%', height: '60%' }} />
-      <RoomArea id="piscina" name="Piscina" style={{ top: '45%', left: '5%', width: '30%', height: '25%', borderStyle: 'solid' }} />
-      <RoomArea id="area-lazer" name="Área de Lazer" style={{ top: '60%', left: '0%', width: '60%', height: '40%', borderBottomLeftRadius: '10rem', borderTop: 'none' }} className="border-t-0" />
-      <RoomArea id="banheiro2" name="Banheiro 2" style={{ top: '75%', left: '40%', width: '10%', height: '25%' }} />
-      <RoomArea id="garagem" name="Garagem" style={{ top: '60%', left: '60%', width: '40%', height: '40%' }} />
+      <RoomArea id="lavanderia" name="Lavanderia" style={{ top: '0%', left: '0%', width: '100%', height: '10%' }} />
+      <RoomArea id="quarto2" name="Quarto 2" style={{ top: '10%', left: '0%', width: '25%', height: '15%' }} />
+      <RoomArea id="banheiro1" name="Banheiro 1" style={{ top: '10%', left: '25%', width: '10%', height: '15%' }} />
+      <RoomArea id="quarto1" name="Quarto 1" style={{ top: '10%', left: '35%', width: '25%', height: '15%' }} />
+      <RoomArea id="casa-maquinas" name="Casa de Maquinas" style={{ top: '25%', left: '0%', width: '60%', height: '5%' }} />
+      <RoomArea id="piscina" name="Piscina" style={{ top: '30%', left: '5%', width: '50%', height: '25%', borderStyle: 'solid' }} />
+      <RoomArea id="cozinha-sala" name="Cozinha/Sala" style={{ top: '10%', left: '60%', width: '40%', height: '45%' }} />
+      <RoomArea id="area-lazer" name="Área de Lazer" style={{ top: '55%', left: '0%', width: '60%', height: '45%', borderBottomLeftRadius: '10rem', borderTop: 'none' }} className="border-t-0" />
+      <RoomArea id="banheiro2" name="Banheiro 2" style={{ top: '80%', left: '60%', width: '10%', height: '20%' }} />
+      <RoomArea id="garagem" name="Garagem" style={{ top: '55%', left: '70%', width: '30%', height: '45%' }} />
 
       {/* Device Pins */}
       {devices.filter(d => d.x != null && d.y != null).map(device => (
