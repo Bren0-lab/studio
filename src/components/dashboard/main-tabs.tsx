@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MonitoringTab from "./monitoring-tab";
 import FloorPlanTab from "./floor-plan-tab";
 import SettingsTab from "./settings-tab";
-import EnergyMatrixTab from "./energy-matrix-tab"; // Importa a nova aba
+import EnergyMatrixTab from "./energy-matrix-tab";
 import { BarChart, LayoutDashboard, Settings, Globe } from "lucide-react";
 
 export default function MainTabs() {
