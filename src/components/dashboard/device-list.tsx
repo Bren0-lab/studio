@@ -11,7 +11,11 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { cn } from '@/lib/utils';
-import { Power, Zap } from 'lucide-react';
+import { Power, Zap, PlusCircle } from 'lucide-react';
+import { Button } from '../ui/button';
+import { useData } from '@/contexts/data-context';
+import AddDeviceDialog from './add-device-dialog';
+import { useState } from 'react';
 
 interface DeviceListProps {
   devices: (Device & { roomName: string })[];
@@ -19,11 +23,26 @@ interface DeviceListProps {
 }
 
 export default function DeviceList({ devices, updateDevice }: DeviceListProps) {
+  const { rooms, addDevice } = useData();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Controle de Dispositivos</CardTitle>
-        <CardDescription>Ligue ou desligue os aparelhos da sua casa.</CardDescription>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div>
+          <CardTitle>Controle de Dispositivos</CardTitle>
+          <CardDescription>Ligue ou desligue os aparelhos da sua casa.</CardDescription>
+        </div>
+        <AddDeviceDialog 
+          rooms={rooms} 
+          addDevice={addDevice}
+          isOpen={isDialogOpen}
+          setIsOpen={setIsDialogOpen}
+        >
+          <Button>
+            <PlusCircle className="w-4 h-4 mr-2" />
+            Adicionar Dispositivo
+          </Button>
+        </AddDeviceDialog>
       </CardHeader>
       <CardContent>
         <Table>

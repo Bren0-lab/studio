@@ -9,6 +9,7 @@ interface DataContextProps {
   rooms: Room[];
   config: Config;
   updateDevice: (id: string, updates: Partial<Device>) => void;
+  addDevice: (device: Omit<Device, 'id' | 'on' | 'x' | 'y'>) => void;
   updateConfig: (updates: Partial<Config>) => void;
 }
 
@@ -25,6 +26,17 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
   }, []);
 
+  const addDevice = useCallback((device: Omit<Device, 'id' | 'on' | 'x' | 'y'>) => {
+    const newDevice: Device = {
+      ...device,
+      id: `dev${Date.now()}`,
+      on: false,
+      x: null,
+      y: null,
+    };
+    setDevices(currentDevices => [...currentDevices, newDevice]);
+  }, []);
+
   const updateConfig = useCallback((updates: Partial<Config>) => {
     setConfig(currentConfig => ({...currentConfig, ...updates}));
   }, []);
@@ -34,8 +46,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     rooms,
     config,
     updateDevice,
+    addDevice,
     updateConfig,
-  }), [devices, rooms, config, updateDevice, updateConfig]);
+  }), [devices, rooms, config, updateDevice, addDevice, updateConfig]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
