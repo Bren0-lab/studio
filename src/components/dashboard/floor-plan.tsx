@@ -41,13 +41,11 @@ export default function FloorPlan({ devices, rooms, isMapping, onMapClick }: Flo
       style={{ cursor: isMapping ? 'crosshair' : 'default' }}
     >
       {/* Room Layout based on user request */}
-      <RoomArea id="quarto1" name="Quarto 1" style={{ top: '5%', left: '5%', width: '38%', height: '28%' }} />
-      <RoomArea id="banheiro1" name="Banheiro" style={{ top: '5%', left: '45%', width: '18%', height: '28%' }} />
-      <RoomArea id="quarto2" name="Quarto 2" style={{ top: '5%', left: '65%', width: '30%', height: '28%' }} />
-      
-      <RoomArea id="sala" name="Sala / Cozinha" style={{ top: '38%', left: '5%', width: '58%', height: '57%' }} />
-
-      <RoomArea id="servico" name="Área de Serviço" className="rounded-br-3xl" style={{ top: '68%', left: '68%', width: '27%', height: '27%' }} />
+      <RoomArea id="quarto1" name="Quarto 1" style={{ top: '0%', left: '0%', width: '40%', height: '30%' }} />
+      <RoomArea id="quarto2" name="Quarto 2" style={{ top: '0%', left: '40%', width: '60%', height: '30%' }} />
+      <RoomArea id="sala" name="Sala" style={{ top: '30%', left: '0%', width: '60%', height: '40%' }} />
+      <RoomArea id="cozinha" name="Cozinha" style={{ top: '30%', left: '60%', width: '40%', height: '70%' }} />
+      <RoomArea id="area" name="Área" style={{ top: '70%', left: '0%', width: '60%', height: '30%', borderBottomLeftRadius: '2rem' }} />
 
       {/* Device Pins */}
       {devices.filter(d => d.x != null && d.y != null).map(device => (
