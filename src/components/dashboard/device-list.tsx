@@ -11,11 +11,13 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { cn } from '@/lib/utils';
-import { Power, Zap, PlusCircle } from 'lucide-react';
+import { Power, Zap, PlusCircle, Trash2 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useData } from '@/contexts/data-context';
 import AddDeviceDialog from './add-device-dialog';
 import { useState } from 'react';
+import DeleteDeviceDialog from './delete-device-dialog';
+import { useToast } from '@/hooks/use-toast';
 
 interface DeviceListProps {
   devices: (Device & { roomName: string })[];
@@ -23,20 +25,30 @@ interface DeviceListProps {
 }
 
 export default function DeviceList({ devices, updateDevice }: DeviceListProps) {
-  const { rooms, addDevice } = useData();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { rooms, addDevice, deleteDevice } = useData();
+  const { toast } = useToast();
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
+  const handleDelete = (deviceId: string, deviceName: string) => {
+    deleteDevice(deviceId);
+    toast({
+        title: "Dispositivo Removido!",
+        description: `O dispositivo ${deviceName} foi removido com sucesso.`,
+    })
+  }
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
           <CardTitle>Controle de Dispositivos</CardTitle>
-          <CardDescription>Ligue ou desligue os aparelhos da sua casa.</CardDescription>
+          <CardDescription>Ligue, desligue ou remova os aparelhos da sua casa.</CardDescription>
         </div>
         <AddDeviceDialog 
           rooms={rooms} 
           addDevice={addDevice}
-          isOpen={isDialogOpen}
-          setIsOpen={setIsDialogOpen}
+          isOpen={isAddDialogOpen}
+          setIsOpen={setIsAddDialogOpen}
         >
           <Button>
             <PlusCircle className="w-4 h-4 mr-2" />
@@ -53,7 +65,7 @@ export default function DeviceList({ devices, updateDevice }: DeviceListProps) {
               <TableHead className="hidden md:table-cell">Cômodo</TableHead>
               <TableHead className="text-right">Potência</TableHead>
               <TableHead className="text-right hidden md:table-cell">Uso/dia</TableHead>
-              <TableHead className="text-right">Controle</TableHead>
+              <TableHead className="text-center">Controles</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -77,11 +89,19 @@ export default function DeviceList({ devices, updateDevice }: DeviceListProps) {
                 </TableCell>
                 <TableCell className="text-right hidden md:table-cell text-muted-foreground">{device.hours}h</TableCell>
                 <TableCell className="text-right">
-                  <Switch
-                    checked={device.on}
-                    onCheckedChange={(on) => updateDevice(device.id, { on })}
-                    aria-label={`Ligar/Desligar ${device.name}`}
-                  />
+                  <div className="flex items-center justify-end gap-2">
+                    <Switch
+                        checked={device.on}
+                        onCheckedChange={(on) => updateDevice(device.id, { on })}
+                        aria-label={`Ligar/Desligar ${device.name}`}
+                    />
+                    <DeleteDeviceDialog onConfirm={() => handleDelete(device.id, device.name)}>
+                        <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 w-8 h-8">
+                            <Trash2 className="w-4 h-4" />
+                            <span className="sr-only">Excluir</span>
+                        </Button>
+                    </DeleteDeviceDialog>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

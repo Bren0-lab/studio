@@ -10,6 +10,7 @@ interface DataContextProps {
   config: Config;
   updateDevice: (id: string, updates: Partial<Device>) => void;
   addDevice: (device: Omit<Device, 'id' | 'on' | 'x' | 'y'>) => void;
+  deleteDevice: (id: string) => void;
   updateConfig: (updates: Partial<Config>) => void;
 }
 
@@ -37,6 +38,10 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setDevices(currentDevices => [...currentDevices, newDevice]);
   }, []);
 
+  const deleteDevice = useCallback((id: string) => {
+    setDevices(currentDevices => currentDevices.filter(d => d.id !== id));
+  }, []);
+
   const updateConfig = useCallback((updates: Partial<Config>) => {
     setConfig(currentConfig => ({...currentConfig, ...updates}));
   }, []);
@@ -47,8 +52,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     config,
     updateDevice,
     addDevice,
+    deleteDevice,
     updateConfig,
-  }), [devices, rooms, config, updateDevice, addDevice, updateConfig]);
+  }), [devices, rooms, config, updateDevice, addDevice, deleteDevice, updateConfig]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
