@@ -28,8 +28,8 @@ export const initialConfig: Config = {
   activeTariffKey: 'verde',
   tariffs: {
     verde: { mult: 1.0, color: '#4CAF50', additionalCostPerkWh: 0 },
-    amarela: { mult: 1.0, color: '#FFEB3B', additionalCostPerkWh: 0.015 },
-    vermelha_1: { mult: 1.0, color: '#F44336', additionalCostPerkWh: 0.030 },
-    vermelha_2: { mult: 1.0, color: '#B71C1C', additionalCostPerkWh: 0.045 }
+    amarela: { mult: 1.0, color: '#FFEB3B', additionalCostPerkWh: 0.01885 },
+    vermelha_1: { mult: 1.0, color: '#F44336', additionalCostPerkWh: 0.04463 },
+    vermelha_2: { mult: 1.0, color: '#B71C1C', additionalCostPerkWh: 0.07877 }
   },
 };
