@@ -1,7 +1,7 @@
 export type Tariff = {
   mult: number;
   color: string;
-  additionalCostPer100kWh: number;
+  additionalCostPerkWh: number;
 };
 
 export type Config = {

@@ -99,7 +99,7 @@ export default function SettingsTab() {
                             <SelectItem key={key} value={key}>
                                 <div className="flex items-center gap-2">
                                     <span className="w-3 h-3 rounded-full" style={{backgroundColor: tariff.color}}/>
-                                    <span>{getTariffDisplayName(key)} (+R$ {tariff.additionalCostPer100kWh.toFixed(2).replace('.',',')}/100kWh)</span>
+                                    <span>{getTariffDisplayName(key)} (+R$ {tariff.additionalCostPerkWh.toFixed(3).replace('.',',')}/kWh)</span>
                                 </div>
                             </SelectItem>
                         ))}

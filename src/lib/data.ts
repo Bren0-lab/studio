@@ -27,9 +27,9 @@ export const initialConfig: Config = {
   baseRate: 0.75, // R$/kWh
   activeTariffKey: 'verde',
   tariffs: {
-    verde: { mult: 1.0, color: '#4CAF50', additionalCostPer100kWh: 0 },
-    amarela: { mult: 1.0, color: '#FFEB3B', additionalCostPer100kWh: 2.89 },
-    vermelha_1: { mult: 1.0, color: '#F44336', additionalCostPer100kWh: 6.50 },
-    vermelha_2: { mult: 1.0, color: '#B71C1C', additionalCostPer100kWh: 9.49 }
+    verde: { mult: 1.0, color: '#4CAF50', additionalCostPerkWh: 0 },
+    amarela: { mult: 1.0, color: '#FFEB3B', additionalCostPerkWh: 0.015 },
+    vermelha_1: { mult: 1.0, color: '#F44336', additionalCostPerkWh: 0.030 },
+    vermelha_2: { mult: 1.0, color: '#B71C1C', additionalCostPerkWh: 0.045 }
   },
 };
