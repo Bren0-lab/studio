@@ -9,9 +9,8 @@ interface DataContextProps {
   rooms: Room[];
   config: Config;
   updateDevice: (id: string, updates: Partial<Device>) => void;
-  addDevice: (device: Omit<Device, 'id' | 'on' | 'x' | 'y'>) => void;
-  deleteDevice: (id: string) => void;
   updateConfig: (updates: Partial<Config>) => void;
+  // Removido addDevice e deleteDevice para usar dados estáticos
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -27,21 +26,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
   }, []);
 
-  const addDevice = useCallback((device: Omit<Device, 'id' | 'on' | 'x' | 'y'>) => {
-    const newDevice: Device = {
-      ...device,
-      id: `dev${Date.now()}`,
-      on: false,
-      x: null,
-      y: null,
-    };
-    setDevices(currentDevices => [...currentDevices, newDevice]);
-  }, []);
-
-  const deleteDevice = useCallback((id: string) => {
-    setDevices(currentDevices => currentDevices.filter(d => d.id !== id));
-  }, []);
-
   const updateConfig = useCallback((updates: Partial<Config>) => {
     setConfig(currentConfig => ({...currentConfig, ...updates}));
   }, []);
@@ -51,10 +35,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     rooms,
     config,
     updateDevice,
-    addDevice,
-    deleteDevice,
     updateConfig,
-  }), [devices, rooms, config, updateDevice, addDevice, deleteDevice, updateConfig]);
+  }), [devices, rooms, config, updateDevice, updateConfig]);
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
